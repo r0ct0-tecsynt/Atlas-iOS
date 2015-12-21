@@ -271,5 +271,14 @@
  @param conversation The Conversation object to reload the corresponding cell of. Cannot be `nil`.
  */
 - (void)reloadCellForConversation:(LYRConversation *)conversation;
+///------------------------------
+/// @name CUSTOM CELL SETTER
+///------------------------------
+
+/**
+ */
+@property NSString *customCellIdentifier;
+
+- (void)setCustomCellWithNib:(UINib *)nib reuseIdentifier:(NSString *)identifier;
 
 @end

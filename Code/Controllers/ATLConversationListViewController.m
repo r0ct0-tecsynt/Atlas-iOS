@@ -21,6 +21,7 @@
 #import <objc/runtime.h>
 #import "ATLConversationListViewController.h"
 #import "ATLMessagingUtilities.h"
+#import "SWRevealTableViewCell.h"
 
 static NSString *const ATLConversationCellReuseIdentifier = @"ATLConversationCellReuseIdentifier";
 static NSString *const ATLImageMIMETypePlaceholderText = @"Attachment: Image";
@@ -28,7 +29,7 @@ static NSString *const ATLVideoMIMETypePlaceholderText = @"Attachment: Video";
 static NSString *const ATLLocationMIMETypePlaceholderText = @"Attachment: Location";
 static NSString *const ATLGIFMIMETypePlaceholderText = @"Attachment: GIF";
 
-@interface ATLConversationListViewController () <UIActionSheetDelegate, LYRQueryControllerDelegate, UISearchBarDelegate, UISearchControllerDelegate, UISearchDisplayDelegate>
+@interface ATLConversationListViewController () <UIActionSheetDelegate, LYRQueryControllerDelegate, UISearchBarDelegate, UISearchControllerDelegate, UISearchDisplayDelegate, SWRevealTableViewCellDataSource, SWRevealTableViewCellDelegate>
 
 @property (nonatomic) LYRQueryController *queryController;
 @property (nonatomic) LYRQueryController *searchQueryController;
@@ -84,7 +85,7 @@ NSString *const ATLConversationListViewControllerDeletionModeGlobal = @"Global";
     _deletionModes = @[@(LYRDeletionModeLocal), @(LYRDeletionModeAllParticipants)];
     _displaysAvatarItem = NO;
     _allowsEditing = YES;
-    _rowHeight = 46.0f;
+    _rowHeight = 56.0f;
     _shouldDisplaySearchController = YES;
 }
 
@@ -250,6 +251,11 @@ NSString *const ATLConversationListViewControllerDeletionModeGlobal = @"Global";
 
 #pragma mark - UITableViewDataSource
 
+- (void)setCustomCellWithNib:(UINib*)nib reuseIdentifier:(NSString *)identifier {
+    self.customCellIdentifier = identifier;
+    [self.tableView registerNib:nib forCellReuseIdentifier:identifier];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [self.queryController numberOfObjectsInSection:section];
@@ -257,7 +263,7 @@ NSString *const ATLConversationListViewControllerDeletionModeGlobal = @"Global";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *reuseIdentifier = [self reuseIdentifierForConversation:nil atIndexPath:indexPath];
+    NSString *reuseIdentifier = self.customCellIdentifier;
     
     UITableViewCell<ATLConversationPresenting> *conversationCell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     [self configureCell:conversationCell atIndexPath:indexPath];
