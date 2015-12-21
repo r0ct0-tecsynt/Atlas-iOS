@@ -84,7 +84,7 @@ NSString *const ATLConversationListViewControllerDeletionModeGlobal = @"Global";
     _deletionModes = @[@(LYRDeletionModeLocal), @(LYRDeletionModeAllParticipants)];
     _displaysAvatarItem = NO;
     _allowsEditing = YES;
-    _rowHeight = 76.0f;
+    _rowHeight = 46.0f;
     _shouldDisplaySearchController = YES;
 }
 
