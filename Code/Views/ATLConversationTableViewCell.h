@@ -20,12 +20,13 @@
 
 #import <UIKit/UIKit.h>
 #import "ATLConversationPresenting.h"
+#import "SWRevealTableViewCell.h"
 
 /**
  @abstract The `ATLConversationTableViewCell` class provides a lightweight, customizable table
  view cell for presenting Layer conversation objects.
  */
-@interface ATLConversationTableViewCell : UITableViewCell <ATLConversationPresenting>
+@interface ATLConversationTableViewCell : SWRevealTableViewCell <ATLConversationPresenting>
 
 /**
  @abstract The font for the conversation label displayed in the cell. Default is 14pt system font.

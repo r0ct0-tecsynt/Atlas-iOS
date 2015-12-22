@@ -263,10 +263,11 @@ NSString *const ATLConversationListViewControllerDeletionModeGlobal = @"Global";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *reuseIdentifier = self.customCellIdentifier;
-    
-    UITableViewCell<ATLConversationPresenting> *conversationCell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
-    [self configureCell:conversationCell atIndexPath:indexPath];
+   NSString *reuseIdentifier = [self reuseIdentifierForConversation:nil atIndexPath:indexPath];
+    SWRevealTableViewCell *conversationCell = (SWRevealTableViewCell *)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
+    [self configureCell:(UITableViewCell<ATLConversationPresenting> *)conversationCell atIndexPath:indexPath];
+    conversationCell.delegate = self;
+    conversationCell.dataSource = self;
     return conversationCell;
 }
 
@@ -556,5 +557,39 @@ NSString *const ATLConversationListViewControllerDeletionModeGlobal = @"Global";
         }
     }
 }
+
+//MARK: - SWCELL_DATA_DELEGATE
+
+- (void)revealTableViewCell:(SWRevealTableViewCell *)revealTableViewCell willMoveToPosition:(SWCellRevealPosition)position
+{
+    if ( position == SWCellRevealPositionCenter )
+        return;
+    
+    for ( SWRevealTableViewCell *cell in [self.tableView visibleCells] )
+    {
+        if ( cell == revealTableViewCell )
+            continue;
+        
+        [cell setRevealPosition:SWCellRevealPositionCenter animated:YES];
+    }
+}
+
+//MARK: - SWCELL_DELEGATE
+
+- (NSArray*)rightButtonItemsInRevealTableViewCell:(SWRevealTableViewCell *)revealTableViewCell
+{
+    SWCellButtonItem *item1 = [SWCellButtonItem itemWithImage:self.deleteButtonImage handler:^BOOL(SWCellButtonItem *item, SWRevealTableViewCell *cell) {
+        [self deleteConversationAtIndexPath:[self.tableView indexPathForCell:revealTableViewCell] withDeletionMode:0];
+        return YES;
+    }];
+    
+    item1.backgroundColor = self.deleteButtonBackColor;
+    item1.tintColor = self.deleteButtonTintColor;
+    item1.width = 40;
+    
+    return @[item1];
+}
+
+
 
 @end

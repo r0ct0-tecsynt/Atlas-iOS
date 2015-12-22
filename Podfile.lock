@@ -10,6 +10,7 @@ PODS:
   - LayerKit (0.17.1)
   - LYRCountDownLatch (0.9.0)
   - OCMock (3.2)
+  - SWRevealTableViewCell (0.3.5)
 
 DEPENDENCIES:
   - Atlas (from `.`)
@@ -19,6 +20,7 @@ DEPENDENCIES:
   - LayerKit
   - LYRCountDownLatch (from `https://github.com/layerhq/LYRCountDownLatch.git`)
   - OCMock
+  - SWRevealTableViewCell
 
 EXTERNAL SOURCES:
   Atlas:
@@ -44,5 +46,6 @@ SPEC CHECKSUMS:
   LayerKit: 5de4711a8b9dd5c5af9489fb9929b0f526eafb9e
   LYRCountDownLatch: 9b440b42a19ddbf4e75bdd4b43726baa1527606a
   OCMock: 28def049ef47f996b515a8eeea958be7ccab2dbb
+  SWRevealTableViewCell: c97ca17df7153f2f130f307ea90399d4b19e4e15
 
 COCOAPODS: 0.39.0

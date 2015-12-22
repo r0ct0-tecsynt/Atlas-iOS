@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		23EEC65DFA023EDAE8E59226 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DE31FA9B1906CEA04D0C891 /* Pods.framework */; };
 		2C4E70B4F6D93CAC46A26A4D /* Pods_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A2BCE5A3BD0E228EF5DBB09 /* Pods_UnitTests.framework */; };
+		509DB6BB1C29276300A3AA0B /* SWRevealTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 509DB6BA1C29276200A3AA0B /* SWRevealTableViewCell.m */; };
+		509DB6BC1C2927E300A3AA0B /* SWRevealTableViewCell.h in Sources */ = {isa = PBXBuildFile; fileRef = 509DB6B91C29276200A3AA0B /* SWRevealTableViewCell.h */; };
+		509DB6BD1C29280400A3AA0B /* SWRevealTableViewCell.h in Resources */ = {isa = PBXBuildFile; fileRef = 509DB6B91C29276200A3AA0B /* SWRevealTableViewCell.h */; };
+		509DB6BE1C29280800A3AA0B /* SWRevealTableViewCell.m in Resources */ = {isa = PBXBuildFile; fileRef = 509DB6BA1C29276200A3AA0B /* SWRevealTableViewCell.m */; };
 		5A86A2D11B82BB11005AF74B /* ATLMessageCollectionViewCellTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A86A2D01B82BB11005AF74B /* ATLMessageCollectionViewCellTests.m */; };
 		5A86A2D21B82BB11005AF74B /* ATLMessageCollectionViewCellTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A86A2D01B82BB11005AF74B /* ATLMessageCollectionViewCellTests.m */; };
 		5AEFC5CB1B79834300ADE4EC /* boatgif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5AEFC5CA1B79834300ADE4EC /* boatgif.gif */; };
@@ -107,6 +111,9 @@
 		19C4C79B004C78E70ECD099C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		255E3F6B1A8D9C7F00E8F59E /* Code */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Code; sourceTree = "<group>"; };
 		30BC628B6C63C85691E39D55 /* Pods-StoryboardTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoryboardTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StoryboardTests/Pods-StoryboardTests.release.xcconfig"; sourceTree = "<group>"; };
+		509DB6B91C29276200A3AA0B /* SWRevealTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealTableViewCell.h; sourceTree = "<group>"; };
+		509DB6BA1C29276200A3AA0B /* SWRevealTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealTableViewCell.m; sourceTree = "<group>"; };
+		509DB6BF1C2928EC00A3AA0B /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		546A51E66746DF23A7B8F128 /* Pods-UnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		57DF9AAA23C7A45C220CBC9A /* Pods-UnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5A86A2D01B82BB11005AF74B /* ATLMessageCollectionViewCellTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATLMessageCollectionViewCellTests.m; path = Tests/ATLMessageCollectionViewCellTests.m; sourceTree = "<group>"; };
@@ -271,6 +278,9 @@
 		D0D778881A02E2B2000A5F51 = {
 			isa = PBXGroup;
 			children = (
+				509DB6BF1C2928EC00A3AA0B /* PrefixHeader.pch */,
+				509DB6B91C29276200A3AA0B /* SWRevealTableViewCell.h */,
+				509DB6BA1C29276200A3AA0B /* SWRevealTableViewCell.m */,
 				255E3F6B1A8D9C7F00E8F59E /* Code */,
 				D676CF171A8C4344002D9D27 /* Examples */,
 				412524007C3A7505AC34F33C /* Frameworks */,
@@ -619,6 +629,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				509DB6BE1C29280800A3AA0B /* SWRevealTableViewCell.m in Resources */,
+				509DB6BD1C29280400A3AA0B /* SWRevealTableViewCell.h in Resources */,
 				D6C0454B1A9941CD0028E9D0 /* test-logo.png in Resources */,
 				D0294DE71A93F37A00702856 /* Info.plist in Resources */,
 				D6F405E71A8FDE3900AE9581 /* Images.xcassets in Resources */,
@@ -835,6 +847,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				509DB6BC1C2927E300A3AA0B /* SWRevealTableViewCell.h in Sources */,
+				509DB6BB1C29276300A3AA0B /* SWRevealTableViewCell.m in Sources */,
 				D6F405AF1A8FDDAA00AE9581 /* ATLSampleConversationAvatarItem.m in Sources */,
 				D6F405CB1A8FDDE300AE9581 /* ATLUserMock.m in Sources */,
 				D6C045451A9914090028E9D0 /* ProgrammaticAppDelegate.m in Sources */,

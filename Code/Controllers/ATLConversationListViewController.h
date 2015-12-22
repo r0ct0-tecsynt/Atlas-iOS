@@ -281,4 +281,11 @@
 
 - (void)setCustomCellWithNib:(UINib *)nib reuseIdentifier:(NSString *)identifier;
 
+@property UIColor *deleteButtonTintColor;
+@property UIColor *deleteButtonBackColor;
+@property UIImage *deleteButtonImage;
+
 @end
+
+
+
