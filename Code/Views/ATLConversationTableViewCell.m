@@ -42,7 +42,7 @@ static NSDateFormatter *ATLRelativeDateFormatter()
     static NSDateFormatter *relativeDateFormatter;
     if (!relativeDateFormatter) {
         relativeDateFormatter = [[NSDateFormatter alloc] init];
-        relativeDateFormatter.dateStyle = NSDateFormatterShortStyle;
+        [relativeDateFormatter setDateFormat:@"dd MMM yy"];
         relativeDateFormatter.doesRelativeDateFormatting = YES;
     }
     return relativeDateFormatter;
@@ -53,7 +53,7 @@ static NSDateFormatter *ATLShortTimeFormatter()
     static NSDateFormatter *shortTimeFormatter;
     if (!shortTimeFormatter) {
         shortTimeFormatter = [[NSDateFormatter alloc] init];
-        shortTimeFormatter.timeStyle = NSDateFormatterShortStyle;
+        [shortTimeFormatter setDateFormat:@"dd MMM yy"];
     }
     return shortTimeFormatter;
 }
