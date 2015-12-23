@@ -297,4 +297,6 @@ typedef NS_ENUM(NSUInteger, ATLAvatarItemDisplayFrequency) {
  */
 @property (nonatomic) ATLAvatarItemDisplayFrequency avatarItemDisplayFrequency;
 
+- (void)sendMessageWithLocation:(CLLocation *)location;
+
 @end

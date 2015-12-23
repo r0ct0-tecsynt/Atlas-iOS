@@ -110,7 +110,7 @@ NSString *const ATLConversationListViewControllerDeletionModeGlobal = @"Global";
     [super viewDidLoad];
     self.title = ATLLocalizedString(@"atl.conversationlist.title.key", ATLConversationListViewControllerTitle, nil);
     self.accessibilityLabel = ATLConversationListViewControllerTitle;
-
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.accessibilityLabel = ATLConversationTableViewAccessibilityLabel;
     self.tableView.accessibilityIdentifier = ATLConversationTableViewAccessibilityIdentifier;
     self.tableView.isAccessibilityElement = YES;
@@ -132,6 +132,7 @@ NSString *const ATLConversationListViewControllerDeletionModeGlobal = @"Global";
         self.searchController.searchResultsDelegate = self;
         self.searchController.searchResultsDataSource = self;
     }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated

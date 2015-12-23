@@ -186,7 +186,7 @@ static CGFloat const ATLChevronIconViewRightPadding = 14.0f;
 {
     [super layoutSubviews];
 
-    self.separatorInset = UIEdgeInsetsMake(0, CGRectGetMinX(self.conversationTitleLabel.frame), 0, 0);
+//    self.separatorInset = UIEdgeInsetsMake(0, CGRectGetMinX(self.conversationTitleLabel.frame), 0, 0);
     self.conversationImageView.layer.cornerRadius = CGRectGetHeight(self.conversationImageView.frame) / 2;
 }
 
