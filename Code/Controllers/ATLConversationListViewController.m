@@ -85,7 +85,7 @@ NSString *const ATLConversationListViewControllerDeletionModeGlobal = @"Global";
     _deletionModes = @[@(LYRDeletionModeLocal), @(LYRDeletionModeAllParticipants)];
     _displaysAvatarItem = NO;
     _allowsEditing = YES;
-    _rowHeight = 56.0f;
+    _rowHeight = 50.0f;
     _shouldDisplaySearchController = YES;
 }
 
@@ -173,9 +173,6 @@ NSString *const ATLConversationListViewControllerDeletionModeGlobal = @"Global";
 {
     if (self.hasAppeared) {
         @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"Cannot change cell class after the view has been presented" userInfo:nil];
-    }
-    if (!class_conformsToProtocol(cellClass, @protocol(ATLConversationPresenting))) {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"Cell class must conform to ATLConversationPresenting" userInfo:nil];
     }
     _cellClass = cellClass;
 }
