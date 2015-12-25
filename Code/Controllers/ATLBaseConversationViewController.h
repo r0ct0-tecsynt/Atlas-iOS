@@ -22,12 +22,12 @@
 #import "ATLAddressBarViewController.h"
 #import "ATLMessageInputToolbar.h"
 #import "ATLTypingIndicatorViewController.h"
-#import "SLKTextViewController.h"
+
 /**
  @abstract The `ATLBaseConversationViewController` manages a suite of user interface components associated with a messaging view controller.
  @discussion The controller handles presenting the `ATLMessageInputToolbar`, the `ATLTypingIndicatorViewController`, and optionally, the `ATLAddressBarViewController`. It also manages configuring the layout and content insets of its collection view property in response to changes in the state or size of its `addressBarController`, `messageInputToolbar`, and `typingIndicatorController` properties.
  */
-@interface ATLBaseConversationViewController : SLKTextViewController
+@interface ATLBaseConversationViewController : UIViewController
 
 ///---------------------------------------------------------------
 /// @name Accessing User Interface Components
