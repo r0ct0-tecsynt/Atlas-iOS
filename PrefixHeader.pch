@@ -16,3 +16,4 @@
 
 
 #import "SWRevealTableViewCell.h"
+#import "SLKTextViewController.h"
