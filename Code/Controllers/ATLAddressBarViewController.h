@@ -144,4 +144,6 @@
  */
 - (BOOL)isDisabled;
 
+@property UIImage *checkMarkImage;
+
 @end

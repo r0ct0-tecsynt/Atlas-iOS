@@ -77,7 +77,7 @@ static CGFloat const ATLLineSpacing = 6;
     
     self.toLabel = [UILabel new];
     self.toLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    self.toLabel.text = ATLLocalizedString(@"atl.addressbar.textview.tolabel.key", @"To:", nil);
+    self.toLabel.text = @"";
     self.toLabel.textColor = [UIColor grayColor];
     self.toLabel.font = self.addressBarFont;
     [self addSubview:self.toLabel];
@@ -149,7 +149,7 @@ static CGFloat const ATLLineSpacing = 6;
 
 - (void)configureToLabelConstraints
 {
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.toLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:14]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.toLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.toLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:10]];
     // Adding the constraint below works around a crash on iOS 7.1. It will be overriden by the content size.
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.toLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]];

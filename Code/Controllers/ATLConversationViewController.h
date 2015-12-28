@@ -40,11 +40,9 @@ typedef NS_ENUM(NSUInteger, ATLAvatarItemDisplayFrequency) {
 @protocol ATLConversationViewControllerDelegate <NSObject>
 
 @optional
-/**
- @abstract Informs the delegate that a user successfully sent an `LYRMessage` object.
- @param conversationViewController The `ATLConversationViewController` in which the message was sent.
- @param message The `LYRMessage` object that was sent via Layer.
- */
+
+- (void)didSelectLocationItem;
+
 - (void)conversationViewController:(ATLConversationViewController *)viewController didSendMessage:(LYRMessage *)message;
 
 /**

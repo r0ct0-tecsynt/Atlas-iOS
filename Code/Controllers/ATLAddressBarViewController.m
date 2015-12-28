@@ -154,6 +154,8 @@ static NSString *const ATLAddressBarParticipantAttributeName = @"ATLAddressBarPa
     cell.textLabel.text = participant.fullName;
     cell.textLabel.font = ATLMediumFont(16);
     cell.textLabel.textColor = ATLBlueColor();
+    cell.imageView.image = participant.avatarImage;
+    cell.accessoryView = [[UIImageView alloc] initWithImage:self.checkMarkImage];
     return cell;
 }
 

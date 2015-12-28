@@ -562,7 +562,7 @@ static NSInteger const ATLPhotoActionSheet = 1000;
                                                              delegate:self
                                                     cancelButtonTitle:ATLLocalizedString(@"atl.conversation.toolbar.actionsheet.cancel.key", @"Cancel", nil)
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:ATLLocalizedString(@"atl.conversation.toolbar.actionsheet.takephoto.key", @"Take Photo/Video", nil), ATLLocalizedString(@"atl.conversation.toolbar.actionsheet.lastphoto.key", @"Last Photo/Video", nil), ATLLocalizedString(@"atl.conversation.toolbar.actionsheet.library.key", @"Photo/Video Library", nil), nil];
+                                                    otherButtonTitles:ATLLocalizedString(@"atl.conversation.toolbar.actionsheet.takephoto.key", @"Take Photo/Video", nil), ATLLocalizedString(@"atl.conversation.toolbar.actionsheet.lastphoto.key", @"Last Photo/Video", nil), ATLLocalizedString(@"atl.conversation.toolbar.actionsheet.library.key", @"Photo/Video Library", nil), "Send Location", nil];
     [actionSheet showInView:self.view];
     actionSheet.tag = ATLPhotoActionSheet;
 }
@@ -696,7 +696,9 @@ static NSInteger const ATLPhotoActionSheet = 1000;
             case 2:
                 [self displayImagePickerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
                 break;
-                
+            case 3:
+                [self pickLocation];
+                break;
             default:
                 break;
         }
@@ -704,6 +706,14 @@ static NSInteger const ATLPhotoActionSheet = 1000;
 }
 
 #pragma mark - Image Picking
+
+- (void)pickLocation{
+    [self.messageInputToolbar.textInputView resignFirstResponder];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self.view becomeFirstResponder];
+    [self.delegate didSelectLocationItem];
+}
+
 
 - (void)displayImagePickerWithSourceType:(UIImagePickerControllerSourceType)sourceType;
 {
