@@ -1468,7 +1468,7 @@ const NSInteger SWCellRevealPositionNone = 0xff;
     NSTimeInterval duration = _revealAnimationDuration;
 
     // Velocity driven change:
-    if (fabsf(velocity) > _quickFlickVelocity)
+    if (fabs(velocity) > _quickFlickVelocity)
     {
         // we may need to set the drag position and to adjust the animation duration
         CGFloat journey = xLocation;
@@ -1484,7 +1484,7 @@ const NSInteger SWCellRevealPositionNone = 0xff;
             }
         }
         
-        duration = fabsf(journey/velocity);
+        duration = fabs(journey/velocity);
     }
     
     // Position driven change:

@@ -86,6 +86,7 @@
 #import "ATLParticipantSectionHeaderView.h"
 #import "ATLParticipantTableViewCell.h"
 #import "ATLProgressView.h"
+#import "SWRevealTableViewCell.h"
 
 /**
  @abstract Returns the Atlas version as a string.
