@@ -165,8 +165,8 @@ static CGFloat const ATLMaxScrollDistanceFromBottom = 150;
 
 - (void)setCollectionView:(UICollectionView *)collectionView
 {
-    collectionView = collectionView;
-    collectionView.translatesAutoresizingMaskIntoConstraints = NO;
+    _collectionView = collectionView;
+    _collectionView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.collectionView];
     [self configureCollectionViewLayoutConstraints];
 }

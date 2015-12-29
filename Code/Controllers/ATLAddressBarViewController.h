@@ -27,6 +27,11 @@
 ///---------------------------------------
 /// @name Delegate
 ///---------------------------------------
+@protocol ATLUserPreseningCell <NSObject>
+
+-(void)setCellWithParticipant:(id<ATLParticipant>)participant;
+
+@end
 
 @protocol ATLAddressBarViewControllerDelegate <NSObject>
 
@@ -135,7 +140,7 @@
 ///----------------------
 
 /**
-@abstract Disables user input and searching.
+ @abstract Disables user input and searching.
  */
 - (void)disable;
 
@@ -145,5 +150,7 @@
 - (BOOL)isDisabled;
 
 @property UIImage *checkMarkImage;
+@property (nonatomic) Class<ATLUserPreseningCell> cellClass;
+
 
 @end

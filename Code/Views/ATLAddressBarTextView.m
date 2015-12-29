@@ -80,10 +80,10 @@ static CGFloat const ATLLineSpacing = 6;
     self.toLabel.text = @"";
     self.toLabel.textColor = [UIColor grayColor];
     self.toLabel.font = self.addressBarFont;
-    [self addSubview:self.toLabel];
+    //    [self addSubview:self.toLabel];
     
     [self configureHeightConstraint];
-    [self configureToLabelConstraints];
+    //    [self configureToLabelConstraints];
     [self setUpMaxHeight];
 }
 
@@ -108,7 +108,7 @@ static CGFloat const ATLLineSpacing = 6;
     _addressBarFont = addressBarFont;
 }
 
- - (void)setAddressBarTextColor:(UIColor *)addressBarTextColor
+- (void)setAddressBarTextColor:(UIColor *)addressBarTextColor
 {
     if (!addressBarTextColor) return;
     _addressBarTextColor = addressBarTextColor;
@@ -147,13 +147,13 @@ static CGFloat const ATLLineSpacing = 6;
     [self addConstraint:self.heightConstraint];
 }
 
-- (void)configureToLabelConstraints
-{
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.toLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.toLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:10]];
-    // Adding the constraint below works around a crash on iOS 7.1. It will be overriden by the content size.
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.toLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]];
-}
+//- (void)configureToLabelConstraints
+//{
+//    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.toLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0]];
+//    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.toLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:10]];
+//    // Adding the constraint below works around a crash on iOS 7.1. It will be overriden by the content size.
+//    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.toLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]];
+//}
 
 - (void)setUpMaxHeight
 {

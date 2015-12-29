@@ -1,5 +1,5 @@
 /*
-
+ 
  Copyright (c) 2014 Joan Lluch <joan.lluch@sweetwilliamsl.com>
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,7 +20,7 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  
-*/
+ */
 
 #import <UIKit/UIGestureRecognizerSubclass.h>
 
@@ -34,9 +34,9 @@ static CGFloat Scale(void)
     static CGFloat scale = 0;
     static dispatch_once_t onceToken;
     dispatch_once( &onceToken, ^
-    {
-        scale = [[UIScreen mainScreen] scale];
-    });
+                  {
+                      scale = [[UIScreen mainScreen] scale];
+                  });
     
     return scale;
 }
@@ -193,7 +193,7 @@ const CGFloat CombinedHeigh = 36;
         frame.origin.y = gap;
         frame.size.height = ceil(h*2/3);
     }
-
+    
     return frame;
 }
 
@@ -208,7 +208,7 @@ const CGFloat CombinedHeigh = 36;
         frame.origin.y = gap + floor(h*2/3);
         frame.size.height = ceil(h*1/3);
     }
-
+    
     return frame;
 }
 
@@ -261,7 +261,7 @@ const CGFloat CombinedHeigh = 36;
     frame.origin.x = (!!reversed == position<SWCellRevealPositionCenter ? bounds.size.width-frame.size.width: 0);
     frame.origin.y = 0;
     frame.size.height = bounds.size.height;
-
+    
     [button setFrame:frame];
 }
 
@@ -363,11 +363,11 @@ static const CGFloat OverDrawWidth = 60;
             location = location + item.width;
         }
     }
-
+    
     CGRect referenceFrame = bounds;
     referenceFrame.origin.x = location;
     referenceFrame.size.width = item.width;
-
+    
     return referenceFrame;
 }
 
@@ -410,7 +410,7 @@ static const CGFloat OverDrawWidth = 60;
     
     else if ( revealPosition > SWCellRevealPositionRight )
         location = revealWidth+OverDrawWidth;
-
+    
     return location*symmetry;
 }
 
@@ -441,7 +441,7 @@ static const CGFloat OverDrawWidth = 60;
     BOOL dismiss = NO;
     if ( _isLeftExtended )
         dismiss = [self _performActionForItem:[_leftButtonItems firstObject]];
-
+    
     if ( _isRightExtended )
         dismiss = [self _performActionForItem:[_rightButtonItems firstObject]];
     
@@ -516,7 +516,7 @@ static const CGFloat OverDrawWidth = 60;
         UIColor *tintColor = item.tintColor;
         UIImage *image = item.image;
         NSString *title = item.title;
-    
+        
         // create a utility view for the item
         SWUtilityButtonView *utilityButtonView = [[SWUtilityButtonView alloc] initWithFrame:CGRectMake(0, 0, item.width, 20)];
         [utilityButtonView setAutoresizesSubviews:NO];
@@ -616,8 +616,8 @@ static const CGFloat OverDrawWidth = 60;
     if ( fabs(xLocation) > fabs(maxLocation) )
     {
         CGFloat overdraw = xLocation-maxLocation;
-//        CGFloat dampeningWidth = symmetry*DampeningWidth;
-//        xTarget = maxLocation + (overdraw*dampeningWidth)/(overdraw+dampeningWidth);
+        //        CGFloat dampeningWidth = symmetry*DampeningWidth;
+        //        xTarget = maxLocation + (overdraw*dampeningWidth)/(overdraw+dampeningWidth);
         xTarget = maxLocation + overdraw*BrakeFactor;
         
         CGFloat scale = Scale();
@@ -653,7 +653,7 @@ static const CGFloat OverDrawWidth = 60;
         if ( item.isOpaque ) lWidth += 1/scale;
         
         CGFloat xReference = symmetry<0 ? size.width+0 : 0-lWidth;
-    
+        
         CGFloat x = floor(scale*(xReference+location))/scale; // round to nearest screen pixel, good for retina and non-retina
         CGFloat w = ceil(scale*lWidth)/scale;
         
@@ -677,7 +677,7 @@ static const CGFloat OverDrawWidth = 60;
         {
             NSTimeInterval duration = isExtendedOverDraw?0.3:0.5;
             [UIView animateWithDuration:duration delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:0
-            animations:block completion:nil];
+                             animations:block completion:nil];
         }
         else
         {
@@ -738,7 +738,7 @@ static const CGFloat OverDrawWidth = 60;
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesBegan:touches withEvent:event];
-   
+    
     UITouch *touch = [touches anyObject];
     _beginPoint = [touch locationInView:self.view];
     _dragging = NO;
@@ -865,7 +865,7 @@ const NSInteger SWCellRevealPositionNone = 0xff;
 - (void)didMoveToSuperview
 {
     [super didMoveToSuperview];
-
+    
     if ( [self superview] )
     {
         SWCellRevealPosition initialPosition = _frontViewPosition;
@@ -877,13 +877,13 @@ const NSInteger SWCellRevealPositionNone = 0xff;
             // In case the contentOffset methods on the revealScrollView are not available we will perform our layout manualy.
             // See _setRevealLocation: implementation
             _revealLayoutView = (id)[self.contentView superview];
-        
+            
             // Create a view to hold our custom utility views and insert it into the cell hierarchy
             _utilityContentView = [[SWUtilityContentView alloc] initWithRevealTableViewCell:self frame:self.bounds];
             [_utilityContentView setAutoresizesSubviews:NO];
             [_utilityContentView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
             [_revealLayoutView insertSubview:_utilityContentView atIndex:0];
-
+            
             // Force the initial reveal position to the developer provided value
             _frontViewPosition = SWCellRevealPositionNone;
             _leftViewPosition = SWCellRevealPositionNone;
@@ -993,7 +993,7 @@ const NSInteger SWCellRevealPositionNone = 0xff;
         // Apple implementation takes care of all the required layout code.
         [(UIScrollView*)_revealLayoutView setContentOffset:CGPointMake(-xLocation,0)];
     }
-
+    
     else
     {
         // Ok, so no underlying scrollView for our layout needs :-/ (iOS8).
@@ -1040,7 +1040,7 @@ const NSInteger SWCellRevealPositionNone = 0xff;
     
     if ( [_dataSource respondsToSelector:@selector(rightButtonItemsInRevealTableViewCell:)] )
         rightItems = [_dataSource rightButtonItemsInRevealTableViewCell:self];
-
+    
     return rightItems;
 }
 
@@ -1072,7 +1072,7 @@ const NSInteger SWCellRevealPositionNone = 0xff;
     
     CGFloat xLocation, dragProgress;
     [self _getDragLocation:&xLocation progress:&dragProgress];
-
+    
     if ( [_delegate respondsToSelector:@selector(revealTableViewCell:panGestureBeganFromLocation:progress:)] )
         [_delegate revealTableViewCell:self panGestureBeganFromLocation:xLocation progress:dragProgress];
 }
@@ -1119,11 +1119,11 @@ const NSInteger SWCellRevealPositionNone = 0xff;
 
 // Removes the top most block in the queue and executes the following one if any.
 // Calls to this method must be paired with calls to _enqueueBlock, particularly it may be called
-// from within a block passed to _enqueueBlock to remove itself when done with animations.  
+// from within a block passed to _enqueueBlock to remove itself when done with animations.
 - (void)_dequeue
 {
     [_animationQueue removeLastObject];
-
+    
     if ( _animationQueue.count > 0 )
     {
         void (^block)(void) = [_animationQueue lastObject];
@@ -1158,7 +1158,7 @@ const NSInteger SWCellRevealPositionNone = 0xff;
         
         CGFloat xLocation = [_utilityContentView frontLocationForPosition:_frontViewPosition];
         [self layoutForLocation:xLocation];
-    
+        
         if ([_delegate respondsToSelector:@selector(revealTableViewCell:animateToPosition:)])
             [_delegate revealTableViewCell:self animateToPosition:_frontViewPosition];
     };
@@ -1178,11 +1178,11 @@ const NSInteger SWCellRevealPositionNone = 0xff;
     
     if ( duration > 0.0f )
     {
-//        [UIView animateWithDuration:duration delay:0.0
-//        options:UIViewAnimationOptionCurveEaseOut animations:animations completion:completion];
+        //        [UIView animateWithDuration:duration delay:0.0
+        //        options:UIViewAnimationOptionCurveEaseOut animations:animations completion:completion];
         
         [UIView animateWithDuration:_revealAnimationDuration delay:0 usingSpringWithDamping:1 initialSpringVelocity:1/duration
-        options:0 animations:animations completion:completion];
+                            options:0 animations:animations completion:completion];
     }
     else
     {
@@ -1196,7 +1196,7 @@ const NSInteger SWCellRevealPositionNone = 0xff;
 - (void (^)(void))_frontDeploymentForNewRevealPosition:(SWCellRevealPosition)newPosition
 {
     if ( ( newPosition < SWCellRevealPositionCenter && _utilityContentView.rightCount==0 ) ||
-         ( newPosition > SWCellRevealPositionCenter && _utilityContentView.leftCount==0) )
+        ( newPosition > SWCellRevealPositionCenter && _utilityContentView.leftCount==0) )
         newPosition = SWCellRevealPositionCenter;
     
     if ( !_allowsRevealInEditMode && self.editing )
@@ -1220,7 +1220,7 @@ const NSInteger SWCellRevealPositionNone = 0xff;
                 [_delegate revealTableViewCell:self didMoveToPosition:newPosition];
         }
     };
-
+    
     return completion;
 }
 
@@ -1228,13 +1228,13 @@ const NSInteger SWCellRevealPositionNone = 0xff;
 // that must be invoked on animation completion in order to finish deployment
 - (void (^)(void))_leftDeploymentForNewRevealPosition:(SWCellRevealPosition)newPosition
 {
-
+    
     if ( newPosition > SWCellRevealPositionCenter && _utilityContentView.leftCount==0 )
         newPosition = SWCellRevealPositionCenter;
     
     if ( !_allowsRevealInEditMode && self.editing )
         newPosition = SWCellRevealPositionCenter;
-
+    
     BOOL appear = (_leftViewPosition <= SWCellRevealPositionCenter || _leftViewPosition == SWCellRevealPositionNone) && newPosition > SWCellRevealPositionCenter;
     BOOL disappear = newPosition <= SWCellRevealPositionCenter && (_leftViewPosition > SWCellRevealPositionCenter && _leftViewPosition != SWCellRevealPositionNone);
     
@@ -1255,7 +1255,7 @@ const NSInteger SWCellRevealPositionNone = 0xff;
     
     if ( !_allowsRevealInEditMode && self.editing )
         newPosition = SWCellRevealPositionCenter;
-
+    
     BOOL appear = (_rightViewPosition >= SWCellRevealPositionCenter || _rightViewPosition == SWCellRevealPositionNone) && newPosition < SWCellRevealPositionCenter ;
     BOOL disappear = newPosition >= SWCellRevealPositionCenter && (_rightViewPosition < SWCellRevealPositionCenter && _rightViewPosition != SWCellRevealPositionNone);
     
@@ -1303,10 +1303,10 @@ const NSInteger SWCellRevealPositionNone = 0xff;
     if ( fabs(xLocation) > fabs(overdrawLocation) )
     {
         CGFloat secondaryOverdraw = xLocation-overdrawLocation;
-//        CGFloat dampeningWidth = symmetry*DampeningWidth;
-//        xLocation = overdrawLocation + (secondaryOverdraw*dampeningWidth)/(secondaryOverdraw+dampeningWidth);
+        //        CGFloat dampeningWidth = symmetry*DampeningWidth;
+        //        xLocation = overdrawLocation + (secondaryOverdraw*dampeningWidth)/(secondaryOverdraw+dampeningWidth);
         xLocation = overdrawLocation + secondaryOverdraw*BrakeFactor;
-
+        
         CGFloat scale = Scale();
         xLocation = round(scale*xLocation)/scale;  // round to nearest screen pixel, good for retina and non-retina
     }
@@ -1329,7 +1329,7 @@ const NSInteger SWCellRevealPositionNone = 0xff;
         if ( recognizer == _panGestureRecognizer )
             return [self _panGestureShouldBegin];
     }
-
+    
     return NO;
 }
 
@@ -1357,15 +1357,15 @@ const NSInteger SWCellRevealPositionNone = 0xff;
     if ( [_delegate respondsToSelector:@selector(revealTableViewCellPanGestureShouldBegin:)] )
         if ( [_delegate revealTableViewCellPanGestureShouldBegin:self] == NO )
             return NO;
-
+    
     UIView *recognizerView = _panGestureRecognizer.view;
     CGFloat xLocation = [_panGestureRecognizer locationInView:recognizerView].x;
     CGFloat width = recognizerView.bounds.size.width;
     
     BOOL draggableBorderAllowing = (
-         _frontViewPosition != SWCellRevealPositionCenter || _draggableBorderWidth == 0.0f ||
-         (xLocation <= _draggableBorderWidth && _utilityContentView.leftCount>0) ||
-         (xLocation >= (width - _draggableBorderWidth) && _utilityContentView.rightCount>0) );
+                                    _frontViewPosition != SWCellRevealPositionCenter || _draggableBorderWidth == 0.0f ||
+                                    (xLocation <= _draggableBorderWidth && _utilityContentView.leftCount>0) ||
+                                    (xLocation >= (width - _draggableBorderWidth) && _utilityContentView.rightCount>0) );
     
     // allow gesture only within the bounds defined by the draggableBorderWidth property
     return draggableBorderAllowing ;
@@ -1391,7 +1391,7 @@ const NSInteger SWCellRevealPositionNone = 0xff;
             break;
             
         case UIGestureRecognizerStateCancelled:
-        //case UIGestureRecognizerStateFailed:
+            //case UIGestureRecognizerStateFailed:
             [self _handleRevealGestureStateCancelledWithRecognizer:recognizer];
             break;
             
@@ -1408,10 +1408,10 @@ const NSInteger SWCellRevealPositionNone = 0xff;
     // the gesture, so we just enqueue a dummy block to ensure any simultaneous programatic actions will be
     // scheduled after the gesture is completed
     [self _enqueueBlock:^{}]; // <-- dummy block
-
+    
     // we store the initial position and initialize a target position
     _panInitialFrontPosition = _frontViewPosition;
-
+    
     // notify delegate
     [self _notifyPanGestureBegan];
 }
@@ -1459,14 +1459,14 @@ const NSInteger SWCellRevealPositionNone = 0xff;
     BOOL bounceBack = symmetry<0 ? _bounceBackOnRightOverdraw : _bounceBackOnLeftOverdraw;
     BOOL reversed = symmetry<0 ? _rightCascadeReversed : _leftCascadeReversed;
     BOOL actionable = symmetry<0 ? _performsActionOnRightOverdraw : _performsActionOnLeftOverdraw;
-  
+    
     // symmetric replacement of location
     xLocation = xLocation * symmetry;
     
     // initially we assume drag to left and default duration
     SWCellRevealPosition revealPosition = SWCellRevealPositionCenter;
     NSTimeInterval duration = _revealAnimationDuration;
-
+    
     // Velocity driven change:
     if (fabsf(velocity) > _quickFlickVelocity)
     {
@@ -1489,8 +1489,8 @@ const NSInteger SWCellRevealPositionNone = 0xff;
     
     // Position driven change:
     else
-    {    
-        // we may need to set the drag position        
+    {
+        // we may need to set the drag position
         if (xLocation > revealWidth*0.5f)
         {
             revealPosition = SWCellRevealPositionRight;
@@ -1502,17 +1502,17 @@ const NSInteger SWCellRevealPositionNone = 0xff;
             }
         }
     }
-
+    
     // symetric replacement of revealPosition
     [self _getAdjustedRevealPosition:&revealPosition forSymmetry:symmetry];
     
     // Notify delegate
     [self _notifyPanGestureEnded];
-
+    
     // Perform item action if necessary
     if ( [_utilityContentView performExtendedActionIfNeeded] )
         revealPosition = SWCellRevealPositionCenter;
-
+    
     // Animate to the final position
     [self _setRevealPosition:revealPosition withDuration:duration];
 }

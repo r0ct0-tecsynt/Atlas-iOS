@@ -31,8 +31,8 @@
 
 @implementation ATLAddressBarView
 
-CGFloat const ATLAddressBarTextViewPadding = 4;
-CGFloat const ATLAddContactButtonRightPadding = -8;
+CGFloat const ATLAddressBarTextViewPadding = 2;
+CGFloat const ATLAddContactButtonRightPadding = -4;
 NSString *const ATLAddContactsButtonAccessibilityLabel = @"Add Contacts Button";
 
 - (id)init
@@ -61,11 +61,13 @@ NSString *const ATLAddContactsButtonAccessibilityLabel = @"Add Contacts Button";
     _addressBarTextView.autocorrectionType = UITextAutocorrectionTypeNo;
     [_addressBarTextView sizeToFit];
     [self addSubview:_addressBarTextView];
+    self.backgroundColor = [UIColor redColor];
     
     _addContactsButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
     _addContactsButton.translatesAutoresizingMaskIntoConstraints = NO;
     _addContactsButton.accessibilityLabel = ATLAddContactsButtonAccessibilityLabel;
     _addContactsButton.tintColor = ATLBlueColor();
+    _addContactsButton.hidden = YES;
     [self addSubview:_addContactsButton];
     
     _bottomBorder = [[UIView alloc] init];
@@ -80,7 +82,7 @@ NSString *const ATLAddContactsButtonAccessibilityLabel = @"Add Contacts Button";
 
 - (void)configureAddressBarTextViewConstrants
 {
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:_addressBarTextView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:_addressBarTextView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:-20]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:_addressBarTextView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:ATLAddressBarTextViewPadding]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:_addressBarTextView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:_addContactsButton attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0]];
     NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:_addressBarTextView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-ATLAddressBarTextViewPadding];

@@ -28,7 +28,7 @@ static BOOL ATLIsDateInToday(NSDate *date)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     NSCalendarUnit dateUnits = NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
-#pragma GCC diagnostic pop    
+#pragma GCC diagnostic pop
     NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:dateUnits fromDate:date];
     NSDateComponents *todayComponents = [[NSCalendar currentCalendar] components:dateUnits fromDate:[NSDate date]];
     return ([dateComponents day] == [todayComponents day] &&
@@ -136,7 +136,7 @@ static CGFloat const ATLChevronIconViewRightPadding = 14.0f;
     _lastMessageLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _lastMessageLabel.font = _lastMessageLabelFont;
     _lastMessageLabel.textColor = _lastMessageLabelColor;
-    _lastMessageLabel.numberOfLines = 2;
+    _lastMessageLabel.numberOfLines = 1;
     [self.contentView addSubview:_lastMessageLabel];
     
     // Initialize Date Label
@@ -158,7 +158,7 @@ static CGFloat const ATLChevronIconViewRightPadding = 14.0f;
     _chevronIconView.translatesAutoresizingMaskIntoConstraints = NO;
     
     NSBundle *resourcesBundle = ATLResourcesBundle();
-    _chevronIconView.image = [UIImage imageNamed:@"chevron" inBundle:resourcesBundle compatibleWithTraitCollection:nil];
+    //    _chevronIconView.image = [UIImage imageNamed:@"chevron" inBundle:resourcesBundle compatibleWithTraitCollection:nil];
     [self.contentView addSubview:_chevronIconView];
     
     [self configureConversationImageViewLayoutContraints];
@@ -178,15 +178,15 @@ static CGFloat const ATLChevronIconViewRightPadding = 14.0f;
         [self.contentView removeConstraint:self.conversationTitleLabelWithoutImageLeftConstraint];
         [self.contentView addConstraint:self.conversationTitleLabelWithImageLeftConstraint];
     }
-
+    
     [super updateConstraints];
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-
-//    self.separatorInset = UIEdgeInsetsMake(0, CGRectGetMinX(self.conversationTitleLabel.frame), 0, 0);
+    
+    //    self.separatorInset = UIEdgeInsetsMake(0, CGRectGetMinX(self.conversationTitleLabel.frame), 0, 0);
     self.conversationImageView.layer.cornerRadius = CGRectGetHeight(self.conversationImageView.frame) / 2;
 }
 
