@@ -578,7 +578,7 @@ NSString *const ATLConversationListViewControllerDeletionModeGlobal = @"Global";
 - (NSArray*)rightButtonItemsInRevealTableViewCell:(SWRevealTableViewCell *)revealTableViewCell
 {
     SWCellButtonItem *item1 = [SWCellButtonItem itemWithImage:self.deleteButtonImage handler:^BOOL(SWCellButtonItem *item, SWRevealTableViewCell *cell) {
-        [self deleteConversationAtIndexPath:[self.tableView indexPathForCell:revealTableViewCell] withDeletionMode:0];
+        [self deleteConversationAtIndexPath:[self.tableView indexPathForCell:revealTableViewCell] withDeletionMode:2];
         return YES;
     }];
     
