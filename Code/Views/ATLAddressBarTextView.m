@@ -37,7 +37,7 @@ NSString *const ATLAddressBarDelimiterPart = @"delimiter";
 
 NSString *const ATLAddressBarTextViewAccesssibilityLabel = @"Address Bar Text View";
 CGFloat const ATLAddressBarTextViewIndent = 34.0f;
-CGFloat const ATLAddressBarTextContainerInset = 10.0f;
+CGFloat const ATLAddressBarTextContainerInset = 12.0f;
 static CGFloat const ATLLineSpacing = 6;
 
 - (id)init

@@ -31,7 +31,7 @@
 
 @implementation ATLAddressBarView
 
-CGFloat const ATLAddressBarTextViewPadding = 2;
+CGFloat const ATLAddressBarTextViewPadding = 0;
 CGFloat const ATLAddContactButtonRightPadding = -4;
 NSString *const ATLAddContactsButtonAccessibilityLabel = @"Add Contacts Button";
 

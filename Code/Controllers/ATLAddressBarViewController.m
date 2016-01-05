@@ -115,7 +115,6 @@ static NSString *const ATLAddressBarParticipantAttributeName = @"ATLAddressBarPa
 {
     if (!selectedParticipants && !_selectedParticipants) return;
     if ([selectedParticipants isEqual:_selectedParticipants]) return;
-    
     if (self.isDisabled) {
         NSString *text = [self disabledStringForParticipants:selectedParticipants];
         self.addressBarView.addressBarTextView.text = text;
@@ -438,6 +437,7 @@ static NSString *const ATLAddressBarParticipantAttributeName = @"ATLAddressBarPa
     
     NSAttributedString *attributedName = [[NSAttributedString alloc] initWithString:participant.fullName attributes:@{ATLAddressBarPartAttributeName: ATLAddressBarNamePart, ATLAddressBarPartAttributeName: ATLAddressBarNamePart, NSForegroundColorAttributeName: textView.addressBarHighlightColor}];
     [attributedString appendAttributedString:attributedName];
+    
     
     NSAttributedString *attributedDelimiter = [[NSAttributedString alloc] initWithString:@", " attributes:@{ATLAddressBarPartAttributeName: ATLAddressBarDelimiterPart, NSForegroundColorAttributeName: [UIColor grayColor]}];
     [attributedString appendAttributedString:attributedDelimiter];
