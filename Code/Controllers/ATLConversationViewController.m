@@ -175,6 +175,7 @@ static NSInteger const ATLPhotoActionSheet = 1000;
     
     if (self.addressBarController && !self.addressBarController.isDisabled) {
         [self.addressBarController.addressBarView.addressBarTextView becomeFirstResponder];
+            self.messageInputToolbar.userInteractionEnabled = NO;
     }
 }
 
@@ -557,12 +558,17 @@ static NSInteger const ATLPhotoActionSheet = 1000;
     if (messageInputToolbar.textInputView.isFirstResponder) {
         [messageInputToolbar.textInputView resignFirstResponder];
     }
+    if (self.addressBarController) {
+        if (self.addressBarController.addressBarView.addressBarTextView.isFirstResponder) {
+            [self.addressBarController.addressBarView.addressBarTextView resignFirstResponder];
+        }
+    }
     
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:self
                                                     cancelButtonTitle:ATLLocalizedString(@"atl.conversation.toolbar.actionsheet.cancel.key", @"Cancel", nil)
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:ATLLocalizedString(@"atl.conversation.toolbar.actionsheet.takephoto.key", @"Take Photo/Video", nil), ATLLocalizedString(@"atl.conversation.toolbar.actionsheet.lastphoto.key", @"Last Photo/Video", nil), ATLLocalizedString(@"atl.conversation.toolbar.actionsheet.library.key", @"Photo/Video Library", nil), @"Send Location", nil];
+                                                    otherButtonTitles:ATLLocalizedString(@"atl.conversation.toolbar.actionsheet.takephoto.key", @"Take Photo/Video", nil), ATLLocalizedString(@"atl.conversation.toolbar.actionsheet.library.key", @"Photo/Video Library", nil), @"Send Location", nil];
     [actionSheet showInView:self.view];
     actionSheet.tag = ATLPhotoActionSheet;
 }
@@ -576,7 +582,6 @@ static NSInteger const ATLPhotoActionSheet = 1000;
     // If there's no content in the input field, send the location.
     NSOrderedSet *messages = [self messagesForMediaAttachments:messageInputToolbar.mediaAttachments];
     if (messages.count == 0 && messageInputToolbar.textInputView.text.length == 0) {
-        [self sendLocationMessage];
     } else {
         for (LYRMessage *message in messages) {
             [self sendMessage:message];
@@ -690,13 +695,9 @@ static NSInteger const ATLPhotoActionSheet = 1000;
                 break;
                 
             case 1:
-                [self captureLastPhotoTaken];
-                break;
-                
-            case 2:
                 [self displayImagePickerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
                 break;
-            case 3:
+            case 2:
                 [self pickLocation];
                 break;
             default:
@@ -952,6 +953,7 @@ static NSInteger const ATLPhotoActionSheet = 1000;
     
     LYRConversation *conversation = [self conversationWithParticipants:participants];
     self.conversation = conversation;
+    self.messageInputToolbar.userInteractionEnabled = YES;
 }
 
 #pragma mark - Address Bar Configuration

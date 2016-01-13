@@ -47,7 +47,7 @@ static NSString *const ATLGIFMIMETypePlaceholderText = @"Attachment: GIF";
 
 @implementation ATLConversationListViewController
 
-NSString *const ATLConversationListViewControllerTitle = @"Messages";
+NSString *const ATLConversationListViewControllerTitle = @"";
 NSString *const ATLConversationTableViewAccessibilityLabel = @"Conversation Table View";
 NSString *const ATLConversationTableViewAccessibilityIdentifier = @"Conversation Table View Identifier";
 NSString *const ATLConversationListViewControllerDeletionModeLocal = @"Local";
@@ -108,8 +108,6 @@ NSString *const ATLConversationListViewControllerDeletionModeGlobal = @"Global";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = ATLLocalizedString(@"atl.conversationlist.title.key", ATLConversationListViewControllerTitle, nil);
-    self.accessibilityLabel = ATLConversationListViewControllerTitle;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.accessibilityLabel = ATLConversationTableViewAccessibilityLabel;
     self.tableView.accessibilityIdentifier = ATLConversationTableViewAccessibilityIdentifier;
@@ -539,7 +537,9 @@ NSString *const ATLConversationListViewControllerDeletionModeGlobal = @"Global";
 - (void)deleteConversationAtIndexPath:(NSIndexPath *)indexPath withDeletionMode:(LYRDeletionMode)deletionMode
 {
     LYRConversation *conversation = [self.queryController objectAtIndexPath:indexPath];
-    [self deleteConversation:conversation withDeletionMode:deletionMode];
+    if ([self.delegate conversationListViewController:self shouldDeleteConversation:conversation]) {
+        [self deleteConversation:conversation withDeletionMode:deletionMode];
+    }
 }
 
 - (void)deleteConversation:(LYRConversation *)conversation withDeletionMode:(LYRDeletionMode)deletionMode

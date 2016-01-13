@@ -509,7 +509,7 @@ static const CGFloat OverDrawWidth = 60;
     for ( SWCellButtonItem *item in items )
     {
         // get the button item
-        NSAssert( [item isKindOfClass:[SWCellButtonItem class]], @"Cell button items must be of class SWCellButtonItem" );
+//        NSAssert( [item isKindOfClass:[SWCellButtonItem class]], @"Cell button items must be of class SWCellButtonItem" );
         
         // get button item properties
         UIColor *backColor = item.backgroundColor;

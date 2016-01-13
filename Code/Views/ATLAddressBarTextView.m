@@ -28,7 +28,6 @@ NSString *const ATLAddressBarDelimiterPart = @"delimiter";
 @interface ATLAddressBarTextView ()
 
 @property (nonatomic) UILabel *toLabel;
-@property (nonatomic) CGFloat maxHeight;
 @property (nonatomic) NSLayoutConstraint *heightConstraint;
 
 @end
@@ -158,7 +157,7 @@ static CGFloat const ATLLineSpacing = 6;
 - (void)setUpMaxHeight
 {
     CGSize size = ATLTextPlainSize(@" ", self.font);
-    self.maxHeight = ceil(size.height) * 2 + ATLLineSpacing + self.textContainerInset.top + self.textContainerInset.bottom;
+    self.maxHeight = ceil(size.height) * 1.2 + ATLLineSpacing + self.textContainerInset.top + self.textContainerInset.bottom;
 }
 
 - (void)layoutSubviews

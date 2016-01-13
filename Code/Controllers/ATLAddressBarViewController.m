@@ -27,6 +27,8 @@
 
 @property (nonatomic) UITableView *tableView;
 @property (nonatomic) NSArray *participants;
+@property (nonatomic) UIView *assistanveView;
+
 @property (nonatomic, getter=isDisabled) BOOL disabled;
 
 @end
@@ -56,8 +58,13 @@ static NSString *const ATLAddressBarParticipantAttributeName = @"ATLAddressBarPa
     self.addressBarView.accessibilityLabel = ATLAddressBarViewAccessibilityLabel;
     self.addressBarView.backgroundColor = ATLAddressBarGray();
     self.addressBarView.addressBarTextView.delegate = self;
-    [self.view addSubview:self.addressBarView];
     
+    self.assistanveView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
+    self.assistanveView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.assistanveView.backgroundColor = [UIColor whiteColor];
+    [self.assistanveView addSubview:self.addressBarView];
+    [self.view addSubview:self.assistanveView];
+
     self.tableView = [[UITableView alloc] init];
     self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
     self.tableView.delegate = self;
@@ -435,9 +442,17 @@ static NSString *const ATLAddressBarParticipantAttributeName = @"ATLAddressBarPa
     ATLAddressBarTextView *textView = self.addressBarView.addressBarTextView;
     NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
     
-    NSAttributedString *attributedName = [[NSAttributedString alloc] initWithString:participant.fullName attributes:@{ATLAddressBarPartAttributeName: ATLAddressBarNamePart, ATLAddressBarPartAttributeName: ATLAddressBarNamePart, NSForegroundColorAttributeName: textView.addressBarHighlightColor}];
-    [attributedString appendAttributedString:attributedName];
+    NSString * participantfullName = @"";
+    if (!participant.fullName) {
+        participantfullName = @"John Doe";
+    }
+    else {
+        participantfullName = participant.fullName;
+    }
     
+    NSAttributedString *attributedName = [[NSAttributedString alloc] initWithString:participantfullName attributes:@{ATLAddressBarPartAttributeName: ATLAddressBarNamePart, ATLAddressBarPartAttributeName: ATLAddressBarNamePart, NSForegroundColorAttributeName: textView.addressBarHighlightColor}];
+    [attributedString appendAttributedString:attributedName];
+
     
     NSAttributedString *attributedDelimiter = [[NSAttributedString alloc] initWithString:@", " attributes:@{ATLAddressBarPartAttributeName: ATLAddressBarDelimiterPart, NSForegroundColorAttributeName: [UIColor grayColor]}];
     [attributedString appendAttributedString:attributedDelimiter];
@@ -526,15 +541,20 @@ static NSString *const ATLAddressBarParticipantAttributeName = @"ATLAddressBarPa
 
 - (void)configureLayoutConstraintsForAddressBarView
 {
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.addressBarView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.95 constant:0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.addressBarView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:10]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.addressBarView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:10]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.assistanveView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.assistanveView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.assistanveView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.assistanveView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:55]];//    [self.view addConstraint:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[assistanveView(==40)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(self.assistanveView)]];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.addressBarView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.assistanveView attribute:NSLayoutAttributeWidth multiplier:0.9 constant:10]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.addressBarView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.assistanveView attribute:NSLayoutAttributeTop multiplier:1.0 constant:10]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.addressBarView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.assistanveView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:10]];
 }
 - (void)configureLayoutConstraintsForTableView
 {
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.addressBarView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.assistanveView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0]];
 }
 

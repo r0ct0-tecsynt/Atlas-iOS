@@ -115,7 +115,6 @@ NSString *const ATLParticipantTableViewControllerTitle = @"Participants";
     self.searchController.searchResultsDelegate = self;
     self.searchController.searchResultsDataSource = self;
 
-    self.title = ATLLocalizedString(@"alt.participant.tableview.title.key", ATLParticipantTableViewControllerTitle, nil);
 }
 
 - (void)viewWillAppear:(BOOL)animated

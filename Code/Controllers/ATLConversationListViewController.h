@@ -38,6 +38,8 @@
  */
 - (void)conversationListViewController:(ATLConversationListViewController *)conversationListViewController didSelectConversation:(LYRConversation *)conversation;
 
+- (BOOL)conversationListViewController:(ATLConversationListViewController *)conversationListViewController shouldDeleteConversation:(LYRConversation *)conversation;
+
 @optional
 
 /**
